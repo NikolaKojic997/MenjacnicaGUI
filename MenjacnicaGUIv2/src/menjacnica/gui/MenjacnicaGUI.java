@@ -117,6 +117,16 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					JOptionPane.showMessageDialog(null,
+							"Napravi i prikazi DodajKursGui",
+							"Obavestenje",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+			});
 			btnDodajKurs.setFont(new Font("Tahoma", Font.BOLD, 10));
 			btnDodajKurs.setBounds(10, 11, 110, 23);
 		}
@@ -228,7 +238,7 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JTextPane getStatusTextPane() {
+	JTextPane getStatusTextPane() {
 		if (StatusTextPane == null) {
 			StatusTextPane = new JTextPane();
 			StatusTextPane.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -295,6 +305,14 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null,
+							"Napravi i prikazi DodajKursGui",
+							"Obavestenje",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
