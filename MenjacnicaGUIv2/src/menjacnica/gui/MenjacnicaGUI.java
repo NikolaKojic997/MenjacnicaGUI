@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
@@ -27,6 +29,12 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -49,6 +57,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmObrisiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
+	private JMenuItem mntmAbout;
 
 	/**
 	 * Launch the application.
@@ -70,10 +79,20 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				izlaz();
+			}
+		});
+		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/img/side-icon-exchange.png")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,7 +106,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getEastPanel() {
 		if (EastPanel == null) {
 			EastPanel = new JPanel();
-			EastPanel.setPreferredSize(new Dimension(110, 10));
+			EastPanel.setPreferredSize(new Dimension(120, 10));
 			EastPanel.setLayout(null);
 			EastPanel.add(getBtnDodajKurs());
 			EastPanel.add(getBtnObrisiKurs());
@@ -98,21 +117,28 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
-			btnDodajKurs.setBounds(10, 11, 100, 23);
+			btnDodajKurs.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnDodajKurs.setBounds(10, 11, 110, 23);
 		}
 		return btnDodajKurs;
 	}
 	private JButton getBtnObrisiKurs() {
 		if (btnObrisiKurs == null) {
 			btnObrisiKurs = new JButton("Obrisi kurs");
-			btnObrisiKurs.setBounds(10, 45, 100, 23);
+			btnObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			btnObrisiKurs.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnObrisiKurs.setBounds(10, 45, 110, 23);
 		}
 		return btnObrisiKurs;
 	}
 	private JButton getBtnIzvrsiZamenu() {
 		if (btnIzvrsiZamenu == null) {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
-			btnIzvrsiZamenu.setBounds(10, 79, 100, 23);
+			btnIzvrsiZamenu.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnIzvrsiZamenu.setBounds(10, 79, 110, 23);
 		}
 		return btnIzvrsiZamenu;
 	}
@@ -135,13 +161,28 @@ public class MenjacnicaGUI extends JFrame {
 	}
 	private JMenu getMnAbout() {
 		if (mnAbout == null) {
-			mnAbout = new JMenu("About");
+			mnAbout = new JMenu("Help\r\n");
+			mnAbout.add(getMntmAbout());
 		}
 		return mnAbout;
 	}
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
+			mntmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFileChooser fc = new JFileChooser();
+										
+										int opcija = fc.showOpenDialog(null);
+										
+										if (opcija == JFileChooser.APPROVE_OPTION) {
+											File f = fc.getSelectedFile();
+											
+											StatusTextPane.setText(StatusTextPane.getText() + '\n' +"Otvoren fajl: "+f.getName()+" Gde "+ f.getAbsolutePath() +" predstavlja apsolutnu putanju do njega");
+											
+										}
+										}
+			});
 			mntmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 			mntmOpen.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
 		}
@@ -150,6 +191,19 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser fc = new JFileChooser();
+										
+										int opcija = fc.showSaveDialog(null);
+										
+										if (opcija == JFileChooser.APPROVE_OPTION) {
+											File f = fc.getSelectedFile();
+											StatusTextPane.setText(StatusTextPane.getText() + '\n' +"Sacuvan fajl: "+f.getName()+" Gde "+ f.getAbsolutePath()+ " predstavlja apsolutnu putanju do njega.");
+											
+				}
+			}
+			});
 			mntmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 			mntmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		}
@@ -158,6 +212,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
+			mntmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					izlaz();
+				}
+			});
 			mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		}
 		return mntmExit;
@@ -250,5 +309,30 @@ public class MenjacnicaGUI extends JFrame {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
 		}
 		return mntmIzvrsiZamenu;
+	}
+	private JMenuItem getMntmAbout() {
+		if (mntmAbout == null) {
+			mntmAbout = new JMenuItem("About");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+						JOptionPane.showMessageDialog(null,
+								"Aplikacija Menjacnica, autor Kojic Nikola",
+								"O programu",
+								JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+			});
+		}
+		return mntmAbout;
+	}
+	private void izlaz() {
+		int opcija = 
+			JOptionPane.showConfirmDialog(
+				null, "Da li zelite da izadjete?",
+				"Izlazak", JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		if (opcija == JOptionPane.YES_OPTION)
+			System.exit(0);
 	}
 }
