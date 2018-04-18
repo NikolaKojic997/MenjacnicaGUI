@@ -137,6 +137,10 @@ public class MenjacnicaGUI extends JFrame {
 			btnObrisiKurs = new JButton("Obrisi kurs");
 			btnObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					JOptionPane.showMessageDialog(null,
+							"Napravi i prikazi ObrisiKursGui",
+							"Obavestenje",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 			btnObrisiKurs.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -319,6 +323,15 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmObrisiKurs() {
 		if (mntmObrisiKurs == null) {
 			mntmObrisiKurs = new JMenuItem("Obrisi kurs");
+			mntmObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null,
+							"Napravi i prikazi ObrisiKursGui",
+							"Obavestenje",
+							JOptionPane.INFORMATION_MESSAGE);
+				
+				}
+			});
 		}
 		return mntmObrisiKurs;
 	}
