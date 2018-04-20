@@ -53,6 +53,7 @@ public class IzvrsiZamenu extends JFrame {
 		setTitle("Izvrsi Zamenu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 377, 317);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

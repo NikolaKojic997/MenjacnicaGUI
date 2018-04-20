@@ -325,10 +325,10 @@ public class MenjacnicaGUI extends JFrame {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
 			mntmDodajKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi DodajKursGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					DodajKursGUI dkp = 
+							new DodajKursGUI(glavniProzor);
+					
+					dkp.setVisible(true);
 				}
 			});
 		}
@@ -339,10 +339,10 @@ public class MenjacnicaGUI extends JFrame {
 			mntmObrisiKurs = new JMenuItem("Obrisi kurs");
 			mntmObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi ObrisiKursGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					ObrisiKursGUI okg = 
+							new ObrisiKursGUI(glavniProzor);
+					
+					okg.setVisible(true);
 				
 				}
 			});
@@ -354,10 +354,9 @@ public class MenjacnicaGUI extends JFrame {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
 			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi IzvrsiZamenuGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					IzvrsiZamenu iz = 
+							new IzvrsiZamenu(glavniProzor);
+					iz.setVisible(true);
 				}
 			});
 		}
