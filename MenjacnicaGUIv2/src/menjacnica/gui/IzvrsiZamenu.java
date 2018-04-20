@@ -44,23 +44,12 @@ public class IzvrsiZamenu extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IzvrsiZamenu frame = new IzvrsiZamenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public IzvrsiZamenu() {
+	public IzvrsiZamenu(MenjacnicaGUI gp) {
 		setTitle("Izvrsi Zamenu");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 377, 317);
@@ -95,6 +84,7 @@ public class IzvrsiZamenu extends JFrame {
 		
 		IznosTextField_1.setText(""+IznosSlider.getValue());
 		
+		this.glavniProzor = gp;
 		
 	}
 	private JLabel getLblKupovniKurs() {
@@ -214,9 +204,9 @@ public class IzvrsiZamenu extends JFrame {
 						vrsta = "Kupovni";
 					else vrsta = "Prodajni";
 					
-					String zaStampu = "Valuta: " + skraceniNaziv + " Iznos: "+ iznos +" Vrsta kursa: "+ vrsta;
+					String zaStampu = "IZMENJEN KURS : "+"Valuta: " + skraceniNaziv + " Iznos: "+ iznos +" Vrsta kursa: "+ vrsta;
 					
-					glavniProzor.getStatusTextPane().setText('\n'+ zaStampu);
+					glavniProzor.getStatusTextPane().setText(glavniProzor.getStatusTextPane().getText()+'\n'+ zaStampu);
 					
 					dispose();
 					

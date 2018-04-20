@@ -31,27 +31,15 @@ public class DodajKursGUI extends JFrame {
 	private JLabel lblSkraceniNaziv;
 	private JTextField SkraceniNazivTextField;
 
-	private MenjacnicaGUI glavniProzor = new MenjacnicaGUI();;
+	private  MenjacnicaGUI glavniProzor;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DodajKursGUI frame = new DodajKursGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public DodajKursGUI() {
+	public DodajKursGUI(MenjacnicaGUI gp) {
 		setResizable(false);
 		setTitle("Dodaj kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,6 +64,8 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getLblSkraceniNaziv());
 		contentPane.add(getSkraceniNazivTextField());
 		
+		this.glavniProzor = gp;
+		
 		
 	}
 	private JButton getBtnDodaj() {
@@ -90,10 +80,10 @@ public class DodajKursGUI extends JFrame {
 					Double srednjiKurs = Double.parseDouble(SrednjiKursTextField.getText());
 					Double kupovniKurs = Double.parseDouble(KupovniKursTextField.getText());
 					
-					String zaIspis = "Sifra: " + sifra + " Naziv: " + naziv+ " Skraceni naziv: " +skraceniNaziv + " Prodajni Kurs: "
+					String zaIspis ="DODAT KURS: "+ "Sifra: " + sifra + " Naziv: " + naziv+ " Skraceni naziv: " +skraceniNaziv + " Prodajni Kurs: "
 							+prodajniKurs+ " Srednji Kurs: "+ srednjiKurs + " Kupovni Kurs: "+ kupovniKurs;
 					
-					glavniProzor.getStatusTextPane().setText('\n' + zaIspis);
+					glavniProzor.getStatusTextPane().setText(glavniProzor.getStatusTextPane().getText() +'\n' + zaIspis);
 					
 					dispose();
 				}

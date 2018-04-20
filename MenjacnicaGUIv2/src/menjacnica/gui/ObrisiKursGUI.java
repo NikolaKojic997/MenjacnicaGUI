@@ -34,28 +34,17 @@ public class ObrisiKursGUI extends JFrame {
 	private JCheckBox chckbxZaistaObrisiKurs;
 	private JButton btnObrisi;
 	private JButton btnOdustani;
-	private MenjacnicaGUI glaviProzor = new MenjacnicaGUI();
+	private MenjacnicaGUI glaviProzor ;;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ObrisiKursGUI frame = new ObrisiKursGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ObrisiKursGUI() {
+	public ObrisiKursGUI(MenjacnicaGUI gp) {
 		setResizable(false);
 		setTitle("Obrisi Kurs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,6 +70,7 @@ public class ObrisiKursGUI extends JFrame {
 		contentPane.add(getBtnOdustani());
 		btnObrisi.setEnabled(false);
 		
+		this.glaviProzor = gp;
 		
 	}
 
@@ -211,11 +201,11 @@ public class ObrisiKursGUI extends JFrame {
 					Double srednjiKurs = Double.parseDouble(SrednjiKursTextField.getText());
 					Double kupovniKurs = Double.parseDouble(KupovniKursTextField.getText());
 					
-					String zaIspis = "Sifra: " + sifra + " Naziv: " + naziv+ " Skraceni naziv: " +skraceniNaziv + " Prodajni Kurs: "
+					String zaIspis = "OBRISAN KURS: "+"Sifra: " + sifra + " Naziv: " + naziv+ " Skraceni naziv: " +skraceniNaziv + " Prodajni Kurs: "
 							+prodajniKurs+ " Srednji Kurs: "+ srednjiKurs + " Kupovni Kurs: "+ kupovniKurs;
 					
 					
-					glaviProzor.getStatusTextPane().setText('\n' + zaIspis);
+					glaviProzor.getStatusTextPane().setText(glaviProzor.getStatusTextPane().getText()+'\n' + zaIspis);
 					
 					dispose();
 				}

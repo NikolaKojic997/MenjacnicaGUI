@@ -59,6 +59,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmIzvrsiZamenu;
 	private JMenuItem mntmAbout;
 
+	private MenjacnicaGUI glavniProzor;
+
 	/**
 	 * Launch the application.
 	 */
@@ -101,6 +103,8 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.add(getEastPanel(), BorderLayout.EAST);
 		contentPane.add(getScrollPane(), BorderLayout.SOUTH);
 		contentPane.add(getScrollPane_1(), BorderLayout.CENTER);
+		
+		this.glavniProzor = this;
 	}
 
 	private JPanel getEastPanel() {
@@ -118,12 +122,14 @@ public class MenjacnicaGUI extends JFrame {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
 			btnDodajKurs.addActionListener(new ActionListener() {
+				
+
 				public void actionPerformed(ActionEvent e) {
 					
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi DodajKursGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					DodajKursGUI dkp = 
+							new DodajKursGUI(glavniProzor);
+					
+					dkp.setVisible(true);
 					
 				}
 			});
@@ -137,10 +143,11 @@ public class MenjacnicaGUI extends JFrame {
 			btnObrisiKurs = new JButton("Obrisi kurs");
 			btnObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi ObrisiKursGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					
+							ObrisiKursGUI okg = 
+							new ObrisiKursGUI(glavniProzor);
+					
+					okg.setVisible(true);
 				}
 			});
 			btnObrisiKurs.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -153,10 +160,9 @@ public class MenjacnicaGUI extends JFrame {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null,
-							"Napravi i prikazi IzvrsiZamenuGui",
-							"Obavestenje",
-							JOptionPane.INFORMATION_MESSAGE);
+					IzvrsiZamenu iz = 
+							new IzvrsiZamenu(glavniProzor);
+					iz.setVisible(true);
 				}
 			});
 			btnIzvrsiZamenu.setFont(new Font("Tahoma", Font.BOLD, 10));
